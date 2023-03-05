@@ -8,7 +8,8 @@ import Property_sider from './views/property_sider';
 const { Header, Content, Sider } = Layout;
 
 
-function Box(props) {
+// to run, delete export default .wyl
+export default function Box(props) {
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef()
   // Hold state for hovered and clicked events
@@ -36,7 +37,9 @@ function Box(props) {
   )
 }
 
-export default function App() {
+// to run, change this
+// export default function App() {
+function App() {
   const item_navs = [
     {
       label: '3D产品展示',
@@ -60,12 +63,8 @@ export default function App() {
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} />
           <pointLight position={[-10, -10, -10]} />
-          {/* <Box position={[-1, 0, 0]} /> */}
-          {/* <Box position={[1, 0, 0]} /> */}
           <Box position={[0, -1, 0]} />
           <Box position={[0, 1, 0]} />
-          {/* <Box position={[0, 0, -1]} /> */}
-          {/* <Box position={[0, 0, 1]} /> */}
           {/* 三个变量，分别是左右 上下 前后 */}
           <OrbitControls />
         </Canvas>
@@ -78,3 +77,5 @@ export default function App() {
 </>
   )
 }
+
+
