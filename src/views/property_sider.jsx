@@ -58,6 +58,20 @@ const Property_sider = () => {
     {
       name: '名称',
       description: '描述...'
+    },
+    {
+      name: 
+        <ol>
+          <li>
+            360°旋转，支持拖动；
+          </li>
+          <li>
+            支持关键属性点击查看。 机箱功率；机箱槽位个数及排布；机箱 VPX/LAM 布局方式；
+          </li>
+          <li>
+            支持关键属性修改，如机箱布局，横插/竖插方式。
+          </li>
+        </ol>
     }
   ];
   console.log(list);
@@ -71,7 +85,10 @@ const Property_sider = () => {
       dataSource={item}
       renderItem={(item) => (
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={[
+          <a key="list-loadmore-edit">edit</a>, 
+          // <a key="list-loadmore-more">more</a>
+        ]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
