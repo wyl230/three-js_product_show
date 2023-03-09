@@ -17,9 +17,11 @@ export default function MyBox(props) {
   const [clicked, click] = useState(false)
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
-    // ref.current.rotation.x += delta
-    // ref.current.rotation.y += delta
-    // ref.current.rotation.z += delta
+    if(props.rotating == true) {
+      ref.current.rotation.x += delta
+      ref.current.rotation.y += delta
+      ref.current.rotation.z += delta
+    }
   });
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
@@ -30,11 +32,22 @@ export default function MyBox(props) {
       onClick={(event) => click(!clicked)}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
+      {/* <boxGeometry args={[100, 1, 1]} /> */}
+
+      <mesh>
+        {/* <boxGeometry args={[100, 1, 1]} />
+        <meshStandardMaterial color={props.color} /> */}
+      </mesh>
+
+      {/* <mesh>
+        <boxGeometry args={[10, 100, 1]} />
+        <meshStandardMaterial color={props.color} />
+      </mesh> */}
+
       <boxGeometry args={props.three_dimension} />
-      {/* <boxGeometry args={[10, 1, 1]} /> */}
       {/* 三维 */}
-      <meshStandardMaterial color={props.color} />
-      {/* <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} /> */}
+      {/* <meshStandardMaterial color={props.color} /> */}
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
   )
 }

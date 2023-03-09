@@ -9,6 +9,7 @@ import React, { useState, Suspense, useLayoutEffect, useMemo, useRef } from 'rea
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { OrbitControls, Plane, Sphere, Stage, Torus, Box } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
 import { OrthographicCamera } from "@react-three/drei";
 import * as THREE from "three";
@@ -16,6 +17,8 @@ import * as THREE from "three";
 extend({ TextGeometry })
 
 const Display_3D = (props) => {
+
+  const { rotating } = useControls({rotating: false})
   const scale = .2;
 
   // for dragging
@@ -25,24 +28,54 @@ const Display_3D = (props) => {
   const handleKeyPress = (e) => {
     console.log('e',e);
   }
+  // const camera_ref = useRef()
+
+  // useFrame((state, delta) => {
+  //   camera_ref[0] = props.camera_pos[0];
+  //   camera_ref[1] = props.camera_pos[1];
+  //   camera_ref[2] = props.camera_pos[2];
+  // });
 
   return (
     <>
+    <Canvas 
+      dpr={[1, 2]} 
+      camera={{ position: 
+        // camera_ref }}
+        [
+          props.camera_pos[0], 
+          props.camera_pos[1],
+          props.camera_pos[2],
+        ] }}
+    >
       <OrbitControls makeDefault />
       <ambientLight intensity={0.5} />
       <pointLight position={[100 * scale, 100 * scale, 100 * scale]} color="yellow" />
-      <Suspense fallback={null}> {/* suspense里面的东西需要等待所有异步操作都执行完之后才会渲染 */}
+      {/* --------------------- */}
+      {/* <Suspense fallback={null}> suspense里面的东西需要等待所有异步操作都执行完之后才会渲染 */}
         <Text_3D 
           scale={scale}
         />
-      </Suspense>
+      {/* </Suspense> */}
       {/* below are the main boxes */}
       {/* <MyBox position={[0, -1, 0]}/>  */}
-      <MyBox position={[0, 0, 0]} three_dimension={[100 * scale, 1 * scale, 100 * scale]}    color={'hotpink'}/>
+      <MyBox 
+        position={[0, 0, 0]} 
+        three_dimension={[100 * scale, 1 * scale, 100 * scale]}    
+        color={'hotpink'}
+        rotating={rotating}
+      />
 
-      <MyBox position={[props.component_pos[0], 6 * scale, props.component_pos[1]]} three_dimension={[30 * scale, 10 * scale, 30 * scale]} color='orange'/>
+      <MyBox 
+        position={[
+          props.component_pos[0], 
+          6 * scale, 
+          props.component_pos[1]
+        ]} 
+        three_dimension={[30 * scale, 10 * scale, 30 * scale]} color='orange'/>
       {/* <MyBox position={[component_x, 6 * scale, component_z]} three_dimension={[30 * scale, 10 * scale, 30 * scale]} color='orange'/> */}
 
+{/* ----------------------------------- */}
 
       {/* draging start */}
       {/* 这是一个平面 */}
@@ -77,6 +110,7 @@ const Display_3D = (props) => {
       <OrbitControls minZoom={10} maxZoom={50} enabled={!isDragging} />
       {/* draging end */}
       {/* <GetObjModel /> */}
+    </Canvas>
     </>
   )
 
