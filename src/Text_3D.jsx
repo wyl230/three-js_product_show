@@ -7,8 +7,6 @@ import { OrbitControls, Plane, Sphere, Stage, Torus, Box } from '@react-three/dr
 import { OrthographicCamera } from "@react-three/drei";
 import * as THREE from "three";
 
-
-
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 extend({ TextGeometry })
 export default function Text_3D(props) {

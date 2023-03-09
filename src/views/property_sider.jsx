@@ -93,7 +93,7 @@ const Property_sider = () => {
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
               // avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name}</a>}
+              title={<a href="https://localhost:9999">{item.name}</a>}
               description={item.description}
             />
             {/* <div>content</div> */}

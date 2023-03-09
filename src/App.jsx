@@ -13,24 +13,15 @@ import { OrbitControls, Plane, Sphere, Stage, Torus, Box } from '@react-three/dr
 import { OrthographicCamera } from "@react-three/drei";
 import * as THREE from "three";
 
-
 import { Divider, Menu, Switch, Breadcrumb,  theme, Layout, Slider, } from 'antd';
 import Property_sider from './views/property_sider';
 import GetObjModel from './views/import_modules'
 import Display_3D from './Display_3D';
 const { Header, Content, Sider } = Layout;
 
-
-
-
-
-
-
 export default function App() {
   const { component_x , component_z } = useControls({ component_x: 0, component_z: 0});
   const [component_pos, setComponent_pos] = useState([0, 0]);
-
-
   
   return (
     <>
