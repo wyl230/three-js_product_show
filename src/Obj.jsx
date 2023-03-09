@@ -3,6 +3,7 @@ import { useDrag } from "@use-gesture/react";
 import { animated, useSpring } from "@react-spring/three";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import keydown from 'react-keydown';
 
 import { OrbitControls, Plane, Sphere, Stage, Torus, Box } from '@react-three/drei'
 
@@ -27,6 +28,10 @@ function Obj({ setIsDragging, floorPlane }) {
     ({ active, movement: [x, y], timeStamp, event }) => {
       if (active) {
         event.ray.intersectPlane(floorPlane, planeIntersectPoint);
+        console.log('active', planeIntersectPoint);
+        
+        // setPos([planeIntersectPoint.x, planeIntersectPoint.y, 1.5]);
+        
         setPos([planeIntersectPoint.x, 1.5, planeIntersectPoint.z]);
       }
 
@@ -47,7 +52,7 @@ function Obj({ setIsDragging, floorPlane }) {
     <animated.mesh {...spring} {...bind()} castShadow>
 
       {/* <boxGeometry args={[10,10,100]} /> */}
-       <dodecahedronBufferGeometry // 十二面体
+       <dodecahedronGeometry // 十二面体
         ref={dragObjectRef}
         attach="geometry"
         args={[1.4, 0]}

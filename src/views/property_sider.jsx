@@ -74,7 +74,7 @@ const Property_sider = () => {
         </ol>
     }
   ];
-  console.log(list);
+  // console.log(list);
   return (
     <List
       className="property-list"
