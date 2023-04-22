@@ -94,22 +94,6 @@ const Display_3D = (props) => {
 
   const cameraRef = useRef();
 
-  const Test = (props) => {
-    useFrame((state, delta) => {
-
-      const camera_pos = state.camera.position;
-      const pos = [camera_pos.x, camera_pos.y, camera_pos.z]
-      // console.log('state', state.camera.position,'delta', delta);
-      // console.log(props.camera_pos,'delta', delta);
-      // if(Date()[23] % 2 == 0)
-      if(pos != props.camera_pos && Math.floor(Math.random() * 101 < 1))
-        console.log(pos, props.camera_pos)
-        props.set_camera_pos(pos);
-  });
-  }
-
-  
-
   return (
     <>
     <Canvas 
@@ -123,8 +107,6 @@ const Display_3D = (props) => {
         } 
       }
     >
-
-      <Test camera_pos={props.camera_pos} set_camera_pos={props.set_camera_pos}/>
       <OrbitControls makeDefault />
       <ambientLight intensity={0.5} />
       <pointLight position={[100 * scale, 100 * scale, 100 * scale]} color="yellow" />
@@ -192,12 +174,13 @@ const Display_3D = (props) => {
           
       <mesh
       >
-      <GetObjModel file_name='right.obj' position={[0,0,0]} origin_point={origin_point} />
-      <GetObjModel file_name='left.obj' position={[0,0,400]} origin_point={origin_point}  />
+      <GetObjModel file_name='right.obj' position={[0,0,0]} origin_point={origin_point} set_camera_pos={props.set_camera_pos}/>
+      <GetObjModel file_name='left.obj' position={[0,0,400]} origin_point={origin_point}  set_camera_pos={props.set_camera_pos}/>
       <GetObjModel file_name='盖板.obj' position={[270,172,200]} rotation={[0, right_angle, 0]} origin_point={origin_point}
-      style={{display: 'none'}  } 
+      style={{display: 'none'}  } set_camera_pos={props.set_camera_pos}
       />
       <GetObjModel file_name='底板.obj' position={[270,-178,200]} rotation={[0, right_angle, 0]} origin_point={origin_point}
+      set_camera_pos={props.set_camera_pos}
       />
       {/* <GetObjModel file_name='前后面板.obj' position={[240,-90,200]} rotation={[0,right_angle,0]} origin_point={origin_point}/> */}
       {/* <GetObjModel file_name='前后面板.obj'/>  */}

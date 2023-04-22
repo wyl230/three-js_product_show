@@ -48,7 +48,6 @@ export default function App() {
           component_pos={component_pos} 
           camera_pos={camera_pos}
           set_camera_pos={set_camera_pos}
-          // set_camera_pos={() => {}}
         />
       </Content>
       <Sider theme={'light'}>

@@ -46,6 +46,7 @@ export default function GetObjModel(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       console.log(camera,'zxcv', Date());
+      props.set_camera_pos(camera.position)
     }, 1000);
 
     // 这里需要 return 一个清除定时器的函数
@@ -56,7 +57,7 @@ export default function GetObjModel(props) {
   return (
       <Suspense fallback={<Loader />}>
         <Model file_name={props.file_name} position={props.position} rotation={props.rotation} origin_point={props.origin_point}
-        />
+        set_camera_pos={props.set_camera_pos}/>
         {/* <MyComponent /> */}
         {/* <Html center>done</Html> */}
         {/* <primitive object={object} scale={1}/> */}
